@@ -11,7 +11,7 @@
 - Live mode reports empty/error responses rather than silently substituting fixture data.
 - Traceable resolved seeds, candidate source labels, swap/reject action, and copyable plan summary.
 
-**Not yet verified:** a real Qloo request, production build, mobile browser test, public deployment, and GitHub publication. The app source is scaffolded, but a production build, live Qloo request, mobile browser behavior, deployment, and GitHub publication have not yet been verified.
+**Verification note:** the smoke test below checks local app readiness, demo provenance, and invalid-input handling. The health endpoint only detects whether a server-side key is configured; it does not verify Qloo authentication. Keep a separate record of your own live request, production build, mobile test, and deployment results.
 
 ## Requirements
 
@@ -47,11 +47,17 @@ Do not use `NEXT_PUBLIC_` for secrets. Do not paste credentials into public issu
 
 1. Browser sends member tastes and planning constraints to the same-origin `POST /api/plan` route.
 2. Server validates request size/count and restricts entity types to an allowlist.
-3. Server resolves a bounded list of seeds using `GET /search?query=...&type=urn:entity:...`.
+3. Server resolves a bounded list of seeds using `GET /search?query=...&types=urn:entity:...&take=12`.
 4. Server passes the resolved entity IDs and requested destination to `GET /v2/insights` with `filter.type=urn:entity:place`, `signal.interests.entities`, `filter.location.query`, and `take`.
 5. The response exposes resolved seed names and the actual returned candidate list. It does not invent affinity scores or claim every group member likes each result.
 
 If live API access fails, the UI reports the error; it does not silently substitute demo data. Qloo API access, entity-type permissions, rate limits, and response compatibility still need to be verified with the assigned event key.
+
+## Smoke test
+
+Start the app in one terminal with `npm run dev`. In a second terminal, run `npm run test:smoke`. You can set `VIBEWEAVE_BASE_URL` if the app is running on another local URL. The test checks `/api/health`, a demo plan, and invalid-input rejection. It does not consume Qloo quota and does not verify live Qloo authentication.
+
+The `/api/health` endpoint reports only whether a key appears configured. It never returns the key and deliberately reports `qlooAuthVerified: false`; only a successful authenticated Qloo request can verify the credential.
 
 ## Deployment
 

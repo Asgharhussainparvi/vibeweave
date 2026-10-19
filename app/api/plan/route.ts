@@ -74,7 +74,7 @@ export async function POST(request: Request) {
     // Resolve up to six unique seeds to keep requests bounded and quota-conscious.
     const unique = [...new Map(preferences.map(p => [`${p.type}:${p.name.toLowerCase()}`, p])).values()].slice(0, 6);
     const resolved = await Promise.all(unique.map(async p => {
-      const payload = await qlooGet("/search", { query: p.name, type: p.type });
+      const payload = await qlooGet("/search", { query: p.name, types: p.type, take: "12" });
       const entity = entitiesFrom(payload)[0];
       const id = entity && safeString(entity.entity_id || entity.id, 180);
       return id ? { ...p, id, resolvedName: safeString(entity.name, 160) || p.name } : null;
