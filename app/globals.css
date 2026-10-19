@@ -13,3 +13,25 @@
 .member-name,.mood-input,.preference-row input,.input-with-icon input{min-height:38px}
 button:focus-visible,a:focus-visible{border-radius:4px}
 @media(max-width:540px){.form-guidance{font-size:11px}.button{min-height:44px}.icon-button,.remove-pref{min-width:32px;min-height:32px}}
+
+
+/* Group taste map: show user-entered taste signals without implying inferred affinity. */
+.taste-map-panel{margin:20px 0 22px;padding:22px;border:1px solid var(--line);border-radius:7px;background:#191918}
+.taste-map-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:18px}
+.taste-map-heading .section-kicker{margin-bottom:10px}
+.taste-map-heading h3{font:600 21px/1.2 var(--display);letter-spacing:-.5px;margin:0}
+.taste-map-heading>p{max-width:340px;color:#a9a69c;font-size:10px;line-height:1.7;margin:0}
+.taste-profile-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.taste-profile{min-width:0;padding:14px;background:#20201e;border:1px solid #363630;border-radius:5px}
+.taste-profile-name{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.taste-profile-name .member-avatar{flex:0 0 30px}
+.taste-profile-name strong{font:600 12px var(--display);overflow-wrap:anywhere}
+.taste-chip-list{display:flex;flex-wrap:wrap;gap:7px}
+.taste-chip{display:inline-flex;align-items:center;gap:7px;max-width:100%;padding:6px 9px;border:1px solid #41413a;border-radius:99px;background:#171716;color:#d4d0c5;font-size:10px;overflow-wrap:anywhere}
+.taste-chip-muted{color:#8e8c82;border-style:dashed}
+.shared-tastes{display:flex;flex-direction:column;gap:10px;margin-top:16px;padding-top:16px;border-top:1px solid #363630}
+.shared-tastes>strong{font:10px var(--mono);letter-spacing:.7px;text-transform:uppercase;color:var(--lime)}
+.shared-tastes>p{margin:0;color:#a9a69c;font-size:11px;line-height:1.7}
+.taste-chip-shared{border-color:#5b663b;background:#252b1c;color:#e1f4b0}
+.taste-chip-shared small{color:#b5c48e;font-size:9px;white-space:nowrap}
+@media(max-width:540px){.taste-map-panel{padding:15px}.taste-map-heading{align-items:flex-start;flex-direction:column;gap:10px}.taste-profile-grid{grid-template-columns:1fr}.taste-chip{font-size:11px}.button,.add-member,.swap-button{min-height:48px}}
