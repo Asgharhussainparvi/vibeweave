@@ -9,5 +9,5 @@ build/
 .DS_Store
 npm-debug.log*
 
-# TypeScript build cache
+# TypeScript incremental build cache
 *.tsbuildinfo
